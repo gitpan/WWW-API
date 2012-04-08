@@ -14,10 +14,10 @@ has 'password' => (
 
 define_api 'https://api.github.com';
 
-get 'show', '/gists/:gist';
-get 'list', '/users/:user/gists';
+get_api 'show', '/gists/:gist';
+get_api 'list', '/users/:user/gists';
 
-post 'create', '/gists' => (
+post_api 'create', '/gists' => (
 	headers  => sub {
 		require MIME::Base64;
 

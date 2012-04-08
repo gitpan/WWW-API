@@ -1,6 +1,6 @@
 package WWW::API;
 {
-  $WWW::API::VERSION = '0.01'; # TRIAL
+  $WWW::API::VERSION = '0.02'; # TRIAL
 }
 
 use strict;
@@ -11,7 +11,8 @@ use Moose::Exporter;
 use Moose::Util::MetaRole;
 
 Moose::Exporter -> setup_import_methods(
-	with_meta	=> [qw/define_api get post put delete patch/],
+	with_meta	=> [qw/define_api get_api post_api put_api
+				delete_api patch_api/],
 	also		=> ['Moose']
 );
 
@@ -21,7 +22,7 @@ WWW::API - Module for building clients for RESTful web service APIs
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
@@ -31,8 +32,8 @@ version 0.01
 
     define_api 'https://api.github.com';
 
-    get 'repo',  '/repos/:user/:repo';
-    get 'repos', '/users/:user/repos';
+    get_api 'repo',  '/repos/:user/:repo';
+    get_api 'repos', '/users/:user/repos';
 
     1;
 
@@ -83,51 +84,51 @@ sub define_api {
 	$meta -> set_api_options($base_url, %opts);
 }
 
-=head2 get $name, $path, %opts
+=head2 get_api $name, $path, %opts
 
 =cut
 
-sub get {
+sub get_api {
 	my ($meta, $name, $path, %opts) = @_;
 
 	$meta -> add_api_method($name, $path, 'GET', %opts);
 }
 
-=head2 post $name, $path, %opts
+=head2 post_api $name, $path, %opts
 
 =cut
 
-sub post {
+sub post_api {
 	my ($meta, $name, $path, %opts) = @_;
 
 	$meta -> add_api_method($name, $path, 'POST', %opts);
 }
 
-=head2 put $name, $path, %opts
+=head2 put_api $name, $path, %opts
 
 =cut
 
-sub put {
+sub put_api {
 	my ($meta, $name, $path, %opts) = @_;
 
 	$meta -> add_api_method($name, $path, 'PUT', %opts);
 }
 
-=head2 delete $name, $path, %opts
+=head2 delete_api $name, $path, %opts
 
 =cut
 
-sub delete {
+sub delete_api {
 	my ($meta, $name, $path, %opts) = @_;
 
 	$meta -> add_api_method($name, $path, 'DELETE', %opts);
 }
 
-=head2 patch $name, $path, %opts
+=head2 patch_api $name, $path, %opts
 
 =cut
 
-sub patch {
+sub patch_api {
 	my ($meta, $name, $path, %opts) = @_;
 
 	$meta -> add_api_method($name, $path, 'PATCH', %opts);

@@ -12,7 +12,7 @@ define_api 'http://cpanmetadb.plackperl.org/v1.0' => (
 	}
 );
 
-get 'package', '/package/:package';
+get_api 'package', '/package/:package';
 
 1;
 

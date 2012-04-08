@@ -4,8 +4,8 @@ use WWW::API;
 
 define_api 'https://api.github.com';
 
-get 'repo',  '/repos/:user/:repo';
-get 'repos', '/users/:user/repos' => (
+get_api 'repo',  '/repos/:user/:repo';
+get_api 'repos', '/users/:user/repos' => (
 	optional => ['type']
 );
 

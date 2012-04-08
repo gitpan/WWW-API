@@ -1,9 +1,32 @@
 ==================================================
-Changes from 2011-04-08 00:00:00 +0000 to present.
+Changes from 2011-04-09 00:00:00 +0000 to present.
 ==================================================
 
 -----------------------------------------
-version 0.01 at 2012-04-07 15:23:52 +0000
+version 0.02 at 2012-04-08 15:14:22 +0000
+-----------------------------------------
+
+  Change: c4099726d5dbdd3635d2de10e4d82a9403b306ba
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date : 2012-04-08 17:12:38 +0000
+
+    Method.pm: add todo 
+
+  Change: 239e3183e921482c9b9706cafe71c1ac3460d7f7
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date : 2012-04-07 23:41:01 +0000
+
+    Method.pm: fix custom headers 
+
+  Change: f37983ec97415eacffdd4569f3c756d821a5a110
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date : 2012-04-07 22:41:40 +0000
+
+    API.pm: append _api to the request methods (get, post, ...) to avoid
+    name clashes 
+
+-----------------------------------------
+version 0.01 at 2012-04-07 15:23:41 +0000
 -----------------------------------------
 
   Change: 4d2dc93d855cf1343db64df109d2715f773cd922
@@ -27,16 +50,6 @@ version 0.01 at 2012-04-07 15:23:52 +0000
   Change: 4a2a436744076b5c8e26fa9f8507d856b07e42b9
   Author: Alessandro Ghedini <al3xbio@gmail.com>
   Date : 2012-04-06 20:02:11 +0000
-
-    initial commit 
-
------------------------------------------
-version 0.00 at 2012-04-06 15:15:13 +0000
------------------------------------------
-
-  Change: cf0ba51db224e67d8e4088bbec213f321658ee40
-  Author: Alessandro Ghedini <al3xbio@gmail.com>
-  Date : 2012-04-06 17:15:13 +0000
 
     initial commit 
 

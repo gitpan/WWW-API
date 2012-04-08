@@ -1,6 +1,6 @@
 package WWW::API::Meta::Method;
 {
-  $WWW::API::Meta::Method::VERSION = '0.01'; # TRIAL
+  $WWW::API::Meta::Method::VERSION = '0.02'; # TRIAL
 }
 
 use strict;
@@ -17,13 +17,15 @@ WWW::API::Meta::Method - Module to create API methods
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =cut
 
 =for Pod::Coverage wrap
 
 =cut
+
+# TODO: custom error handling
 
 sub wrap {
 	my ($class, %args) = @_;
@@ -65,14 +67,14 @@ sub wrap {
 		}
 
 		# get headers
-		if ($args{headers}) {
-			$content = $args{headers}($self);
+		if (defined $args{headers}) {
+			$headers = $args{headers}($self);
 		} elsif ($params) {
-			$content = $self -> meta -> headers($self);
+			$headers = $self -> meta -> headers($self);
 		}
 
 		# encode
-		if ($args{encoder} && $params) {
+		if (defined $args{encoder} && $params) {
 			$content = $args{encoder}($self, $params);
 		} elsif ($params) {
 			$content = $self -> meta -> encode($self, $params);

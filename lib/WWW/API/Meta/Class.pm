@@ -1,6 +1,6 @@
 package WWW::API::Meta::Class;
 {
-  $WWW::API::Meta::Class::VERSION = '0.01'; # TRIAL
+  $WWW::API::Meta::Class::VERSION = '0.02'; # TRIAL
 }
 
 use strict;
@@ -78,7 +78,7 @@ WWW::API::Meta::Class - Metaclass for WWW::API based clients
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =cut
 
