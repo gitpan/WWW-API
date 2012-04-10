@@ -2,6 +2,8 @@ package WWW::Gistly;
 
 use WWW::API;
 
+with 'WWW::API::Role::Decoder::JSON';
+
 has 'username' => (
 	isa	=> 'Str',
 	is	=> 'ro'

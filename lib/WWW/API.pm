@@ -1,6 +1,6 @@
 package WWW::API;
 {
-  $WWW::API::VERSION = '0.02'; # TRIAL
+  $WWW::API::VERSION = '0.03'; # TRIAL
 }
 
 use strict;
@@ -22,7 +22,7 @@ WWW::API - Module for building clients for RESTful web service APIs
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =head1 SYNOPSIS
 
@@ -30,10 +30,15 @@ version 0.02
 
     use WWW::API;
 
+    with 'WWW::API::Role::Encoder::WWWFormURLEncoded';
+    with 'WWW::API::Role::Decoder::JSON';
+
     define_api 'https://api.github.com';
 
     get_api 'repo',  '/repos/:user/:repo';
-    get_api 'repos', '/users/:user/repos';
+    get_api 'repos', '/users/:user/repos' => (
+      optional => ['type']
+    );
 
     1;
 
@@ -43,7 +48,10 @@ version 0.02
 
     my $gh = WWW::GitHub::Repo -> new;
 
-    my $repos = $gh -> repos(user => 'AlexBio');
+    my $repos = $gh -> repos(
+      user => 'AlexBio',
+      type => 'owner'
+    );
 
 =head1 DESCRIPTION
 
@@ -59,16 +67,6 @@ Define a new API client with base URL C<$base_url>.
 Available options are:
 
 =over 4
-
-=item B<encoder>
-
-A custom data encoding subroutine, used to serialize data sent to the web
-services. By default data is encoded to www_form_urlencoded.
-
-=item B<decoder>
-
-A custom data decoding subroutine, use to deserialize data received from the
-web services. By default data is decoded from JSON.
 
 =item B<headers>
 
@@ -86,6 +84,12 @@ sub define_api {
 
 =head2 get_api $name, $path, %opts
 
+Add a new GET API method with name C<$name> which fetches C<$path>.
+
+Additional available options are:
+
+See L</"OPTIONS"> for the additional options.
+
 =cut
 
 sub get_api {
@@ -95,6 +99,10 @@ sub get_api {
 }
 
 =head2 post_api $name, $path, %opts
+
+Add a new POST API method with name C<$name> which fetches C<$path>.
+
+See L</"OPTIONS"> for the additional options.
 
 =cut
 
@@ -106,6 +114,10 @@ sub post_api {
 
 =head2 put_api $name, $path, %opts
 
+Add a new PUT API method with name C<$name> which fetches C<$path>.
+
+See L</"OPTIONS"> for the additional options.
+
 =cut
 
 sub put_api {
@@ -116,6 +128,10 @@ sub put_api {
 
 =head2 delete_api $name, $path, %opts
 
+Add a new DELETE API method with name C<$name> which fetches C<$path>.
+
+See L</"OPTIONS"> for the additional options.
+
 =cut
 
 sub delete_api {
@@ -125,6 +141,10 @@ sub delete_api {
 }
 
 =head2 patch_api $name, $path, %opts
+
+Add a new PATCH API method with name C<$name> which fetches C<$path>.
+
+See L</"OPTIONS"> for the additional options.
 
 =cut
 
@@ -150,6 +170,28 @@ sub init_meta {
 		class_metaroles	=> { class => ['WWW::API::Meta::Class'] },
 	);
 }
+
+=head1 OPTIONS
+
+Additional available options are:
+
+=over
+
+=item B<encoder>
+
+A custom data encoding subroutine, used to serialize data sent to the web
+services. By default data is encoded to www_form_urlencoded.
+
+=item B<decoder>
+
+A custom data decoding subroutine, use to deserialize data received from the
+web services. By default data is decoded from JSON.
+
+=item B<headers>
+
+A custom subroutine that returns an hashref containing additional HTTP headers.
+
+=back
 
 =head1 AUTHOR
 

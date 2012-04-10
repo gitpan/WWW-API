@@ -1,9 +1,55 @@
 ==================================================
-Changes from 2011-04-09 00:00:00 +0000 to present.
+Changes from 2011-04-11 00:00:00 +0000 to present.
 ==================================================
 
 -----------------------------------------
-version 0.02 at 2012-04-08 15:14:22 +0000
+version 0.03 at 2012-04-10 15:12:21 +0000
+-----------------------------------------
+
+  Change: 88fad1444f70ba23f19b80dbf994e62b8cf78971
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date : 2012-04-10 17:12:05 +0000
+
+    dist.ini: fix prereqs 
+
+  Change: 8decc9a26792491aac8afbdb26d978effca0189d
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date : 2012-04-10 17:05:47 +0000
+
+    API.pm: more docs fixes 
+
+  Change: befe4eca1de68c7007b06255b8b44aaea82f8b2c
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date : 2012-04-10 16:49:12 +0000
+
+    Role/: add whatis entries 
+
+  Change: 23fa2017235fdb872610e2e3451646ae3442b7b0
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date : 2012-04-10 16:49:12 +0000
+
+    add XML encoder/decoder 
+
+  Change: ea034486d1ad6594a38fa48e27d38b45601a9b8b
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date : 2012-04-10 16:49:12 +0000
+
+    gist.pl: add decoder role 
+
+  Change: aa3fad4f0454b49d768e1577bcddfd12e7758f97
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date : 2012-04-10 16:15:11 +0000
+
+    API.pm: update docs 
+
+  Change: 5e4dd2a08d3c29c6b4acf8e6c209fa4e14e4fe39
+  Author: Alessandro Ghedini <al3xbio@gmail.com>
+  Date : 2012-04-10 16:08:31 +0000
+
+    add role-base encoding and decoding 
+
+-----------------------------------------
+version 0.02 at 2012-04-08 15:12:38 +0000
 -----------------------------------------
 
   Change: c4099726d5dbdd3635d2de10e4d82a9403b306ba

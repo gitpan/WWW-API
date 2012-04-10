@@ -1,6 +1,6 @@
 package WWW::API::Meta::Method;
 {
-  $WWW::API::Meta::Method::VERSION = '0.02'; # TRIAL
+  $WWW::API::Meta::Method::VERSION = '0.03'; # TRIAL
 }
 
 use strict;
@@ -17,7 +17,7 @@ WWW::API::Meta::Method - Module to create API methods
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =cut
 
@@ -33,7 +33,7 @@ sub wrap {
 	my $code = sub {
 		my ($self, %margs) = @_;
 
-		my ($method, $content, $params, $headers);
+		my ($method, $content, $params, $headers, $result);
 
 		my $http = HTTP::Tiny -> new;
 
@@ -77,7 +77,7 @@ sub wrap {
 		if (defined $args{encoder} && $params) {
 			$content = $args{encoder}($self, $params);
 		} elsif ($params) {
-			$content = $self -> meta -> encode($self, $params);
+			$content = $self -> api_encode($params);
 		}
 
 		my $options = {
@@ -92,7 +92,14 @@ sub wrap {
 		die $resp -> {'status'}
 			unless $resp -> {'success'};
 
-		return $self -> meta -> decode($self, $resp -> {'content'});
+		# decode
+		if (defined $args{decoder} && $resp -> {'content'}) {
+			$result = $args{decoder}($self, $params);
+		} elsif ($resp -> {'content'}) {
+			$result = $self -> api_decode($resp -> {'content'});
+		}
+
+		return $result;
 	};
 
 	$args{body} = $code;

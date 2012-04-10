@@ -2,15 +2,9 @@ package WWW::CPAN::MetaDB;
 
 use WWW::API;
 
-define_api 'http://cpanmetadb.plackperl.org/v1.0' => (
-	decoder	=> sub {
-		require YAML;
+with 'WWW::API::Role::Decoder::YAML';
 
-		my ($self, $data) = @_;
-
-		return YAML::Load($data)
-	}
-);
+define_api 'http://cpanmetadb.plackperl.org/v1.0';
 
 get_api 'package', '/package/:package';
 

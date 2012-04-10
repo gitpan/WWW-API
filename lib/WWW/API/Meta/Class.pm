@@ -1,6 +1,6 @@
 package WWW::API::Meta::Class;
 {
-  $WWW::API::Meta::Class::VERSION = '0.02'; # TRIAL
+  $WWW::API::Meta::Class::VERSION = '0.03'; # TRIAL
 }
 
 use strict;
@@ -12,43 +12,6 @@ use WWW::API::Meta::Method;
 has 'api_base_url' => (
 	isa	=> 'Str',
 	is	=> 'rw'
-);
-
-has 'api_encoder' => (
-	traits	=> ['Code'],
-	isa	=> 'CodeRef',
-	is	=> 'rw',
-	default	=> sub {
-		sub {
-			require HTTP::Tiny;
-
-			my ($self, $data) = @_;
-
-			return HTTP::Tiny -> new ->
-				www_form_urlencode($data)
-		}
-	},
-	handles => {
-		encode => 'execute',
-	}
-);
-
-has 'api_decoder' => (
-	traits	=> ['Code'],
-	isa	=> 'CodeRef',
-	is	=> 'rw',
-	default	=> sub {
-		sub {
-			require JSON;
-
-			my ($self, $data) = @_;
-
-			return JSON::from_json($data)
-		}
-	},
-	handles => {
-		decode => 'execute',
-	}
 );
 
 has 'api_headers' => (
@@ -78,7 +41,7 @@ WWW::API::Meta::Class - Metaclass for WWW::API based clients
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =cut
 
@@ -89,14 +52,10 @@ version 0.02
 sub set_api_options {
 	my ($meta, $base_url, %opts) = @_;
 
-	my $encoder = $opts{encoder};
-	my $decoder = $opts{decoder};
 	my $headers = $opts{headers};
 
 	$meta -> api_base_url($base_url);
 	$meta -> api_headers($headers) if $headers;
-	$meta -> api_encoder($encoder) if $encoder;
-	$meta -> api_decoder($decoder) if $decoder;
 }
 
 sub add_api_method {

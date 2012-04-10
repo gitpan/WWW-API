@@ -12,7 +12,12 @@ eg/github.pl
 lib/WWW/API.pm
 lib/WWW/API/Meta/Class.pm
 lib/WWW/API/Meta/Method.pm
+lib/WWW/API/Role/Decoder/JSON.pm
+lib/WWW/API/Role/Decoder/XML.pm
+lib/WWW/API/Role/Decoder/YAML.pm
+lib/WWW/API/Role/Encoder/JSON.pm
+lib/WWW/API/Role/Encoder/WWWFormURLEncoded.pm
+lib/WWW/API/Role/Encoder/XML.pm
 t/00-compile.t
 t/release-check-manifest.t
-t/release-pod-coverage.t
 t/release-pod-syntax.t
